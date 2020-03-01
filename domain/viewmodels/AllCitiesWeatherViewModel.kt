@@ -3,18 +3,14 @@ package com.example.weatherapp.domain.viewmodels
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.weatherapp.data.local.database.CitiesWeatherDatabase
-import com.example.weatherapp.data.local.models.CityLocalProperty
 import com.example.weatherapp.data.remote.models.CityProperty
-import com.example.weatherapp.data.remote.retrofitBuilder.APIKEY
+import com.example.weatherapp.data.remote.retrofitBuilder.API_KEY
 import com.example.weatherapp.data.remote.weatherApi.CityWeatherApi
-import com.example.weatherapp.data.repo.AllCitiesWeatherRepo
 import com.example.weatherapp.domain.utils.ConnectionStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 
 class AllCitiesWeatherViewModel(application: Application) : AndroidViewModel(application) {
@@ -40,7 +36,7 @@ class AllCitiesWeatherViewModel(application: Application) : AndroidViewModel(app
     private fun getCityProperty(filter : String?){
         coroutineScope.launch {
             if (filter != null) {
-                val getCurrentCityDiffered = CityWeatherApi.retrofitService.getCityAsync(filter, APIKEY)
+                val getCurrentCityDiffered = CityWeatherApi.retrofitService.getCityAsync(filter, API_KEY)
                 try {
                     _networkStatus.value = ConnectionStatus.LOADING
                     val result = getCurrentCityDiffered.await()
@@ -52,6 +48,7 @@ class AllCitiesWeatherViewModel(application: Application) : AndroidViewModel(app
                         _networkStatus.value = ConnectionStatus.DONE
                     }
                 } catch (e: Throwable) {
+                    Log.e("network", e.message!!)
                     _networkStatus.value = ConnectionStatus.ERROR
                 }
             }

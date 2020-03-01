@@ -5,15 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.weatherapp.data.local.database.CitiesWeatherDatabase
 import com.example.weatherapp.data.remote.models.CityProperty
-import com.example.weatherapp.data.remote.retrofitBuilder.APIKEY
+import com.example.weatherapp.data.remote.retrofitBuilder.API_KEY
 import com.example.weatherapp.data.remote.weatherApi.CityWeatherApi
 import com.example.weatherapp.data.utils.asDatabaseModel
 import com.example.weatherapp.data.utils.asDomainModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class AllCitiesWeatherRepo(private val database: CitiesWeatherDatabase) {
-
 
 
     // Room executes all queries on a separate thread.
@@ -34,7 +32,7 @@ class AllCitiesWeatherRepo(private val database: CitiesWeatherDatabase) {
         withContext(Dispatchers.IO){
             try {
                 for(element in it) {
-                    val city = CityWeatherApi.retrofitService.getCityAsync(element!!.name, APIKEY).await()
+                    val city = CityWeatherApi.retrofitService.getCityAsync(element!!.name, API_KEY).await()
                     database.cityWeatherDao().insertCity(asDatabaseModel(city))
                 }
             } catch (t : Throwable){

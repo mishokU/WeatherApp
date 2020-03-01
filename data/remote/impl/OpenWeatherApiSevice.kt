@@ -1,7 +1,6 @@
 package com.example.weatherapp.data.remote.impl
 
 import com.example.weatherapp.data.remote.models.CityProperty
-import com.example.weatherapp.data.remote.retrofitBuilder.APIKEY
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -69,7 +69,7 @@ abstract class CitiesWeatherDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: CitiesWeatherDatabase? = null
 
-        fun getDatabase(context: Context, scope: CoroutineScope): CitiesWeatherDatabase {
+        fun getDatabase(context: Context): CitiesWeatherDatabase {
             synchronized(this) {
                 var instance = INSTANCE
 

@@ -25,7 +25,7 @@ class OneCityWeatherViewModel(cityWeather: CityProperty,application: Application
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     // The ViewModel maintains a reference to the repository to get data.
-    private val repository: AllCitiesWeatherRepo = AllCitiesWeatherRepo(CitiesWeatherDatabase.getDatabase(application, coroutineScope))
+    private val repository: AllCitiesWeatherRepo = AllCitiesWeatherRepo(CitiesWeatherDatabase.getDatabase(application))
 
     val rememberWeatherProperty = repository.allCities
 
