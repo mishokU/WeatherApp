@@ -1,5 +1,4 @@
 # WeatherApp
-weather app
 
 This application was build for learning purposes.
 1) Android Arcitecture Components 
