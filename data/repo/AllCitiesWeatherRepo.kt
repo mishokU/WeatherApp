@@ -1,5 +1,6 @@
 package com.example.weatherapp.data.repo
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.weatherapp.data.local.database.CitiesWeatherDatabase
@@ -13,9 +14,12 @@ import kotlinx.coroutines.withContext
 
 class AllCitiesWeatherRepo(private val database: CitiesWeatherDatabase) {
 
+
+
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
     // Convert CityLocalProperty to UI object cityProperty
+
     val allCities: LiveData<List<CityProperty?>> = Transformations.map(database.cityWeatherDao().getCitiesWeather()) {
         asDomainModel(it)
     }
@@ -26,12 +30,15 @@ class AllCitiesWeatherRepo(private val database: CitiesWeatherDatabase) {
         }
     }
 
-    // TODO Problem with get data from db and pass it the network request
-    suspend fun refreshData() {
+    suspend fun refreshData(it: List<CityProperty?>) {
         withContext(Dispatchers.IO){
-            for(element in allCities.value!!){
-                val city = CityWeatherApi.retrofitService.getCityAsync(element!!.name, APIKEY).await()
-                database.cityWeatherDao().insertCity(asDatabaseModel(city))
+            try {
+                for(element in it) {
+                    val city = CityWeatherApi.retrofitService.getCityAsync(element!!.name, APIKEY).await()
+                    database.cityWeatherDao().insertCity(asDatabaseModel(city))
+                }
+            } catch (t : Throwable){
+                Log.d("refresh", t.message!!)
             }
         }
     }

@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentRememberedCitiesBinding
 import com.example.weatherapp.domain.viewModelFactories.RememberedViewModelFactory
 import com.example.weatherapp.domain.viewmodels.RememberedCityViewModel
@@ -19,6 +18,7 @@ class RememberedCitiesWeatherFragment : Fragment() {
     private lateinit var binding: FragmentRememberedCitiesBinding
     private lateinit var viewModel: RememberedCityViewModel
     private lateinit var rememberAdapter : AllCitiesRecyclerViewAdapter
+    private var refresh : Boolean = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +48,12 @@ class RememberedCitiesWeatherFragment : Fragment() {
                 if(it.isNotEmpty()){
                     binding.emptyText.visibility = View.INVISIBLE
                 }
+                //Refresh data once
+                if(refresh) {
+                   viewModel.refreshAll(it)
+                   refresh = false
+                }
+
                 rememberAdapter.submitList(it)
             }
         })

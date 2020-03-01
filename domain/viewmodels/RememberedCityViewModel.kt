@@ -48,4 +48,10 @@ class RememberedCityViewModel(application: Application) : AndroidViewModel(appli
     fun displayPropertyDetailsComplete() {
         _showFullCityWeather.value = null
     }
+
+    fun refreshAll(it: List<CityProperty?>) {
+        coroutineScope.launch {
+            repository.refreshData(it)
+        }
+    }
 }
