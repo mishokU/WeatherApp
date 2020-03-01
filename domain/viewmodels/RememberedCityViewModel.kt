@@ -24,12 +24,6 @@ class RememberedCityViewModel(application: Application) : AndroidViewModel(appli
     val showFullCityWeather: LiveData<CityProperty>
         get() = _showFullCityWeather
 
-    init {
-        coroutineScope.launch {
-            repository.refreshDataW()
-        }
-    }
-
     fun deleteAll() = coroutineScope.launch{
         repository.deleteAll()
     }

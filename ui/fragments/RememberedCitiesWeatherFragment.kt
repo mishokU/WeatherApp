@@ -50,7 +50,7 @@ class RememberedCitiesWeatherFragment : Fragment() {
                 }
                 //Refresh data once
                 if(refresh) {
-                   //viewModel.refreshAll(it)
+                   viewModel.refreshAll(it)
                    refresh = false
                 }
 
