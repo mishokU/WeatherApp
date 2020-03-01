@@ -8,7 +8,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 private const val BASE_URL = "https://api.openweathermap.org"
 
-const val APIKEY = "0b2991ed0fd468c155b11db345670237"
+const val APIKEY = "c89a47fb9f5a79bb5779eb22acf3da70"
 
 const val IMG_PATH = "https://openweathermap.org/img/w/"
 
