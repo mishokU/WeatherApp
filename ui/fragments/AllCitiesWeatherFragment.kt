@@ -90,7 +90,6 @@ class AllCitiesWeatherFragment : Fragment() {
                     }
                     ConnectionStatus.DONE -> {
                         binding.testText.text = it.toString()
-                        binding.testText.visibility = View.GONE
                     }
                 }
             }

@@ -42,8 +42,8 @@ class AllCitiesWeatherViewModel(application: Application) : AndroidViewModel(app
             if (filter != null) {
                 val getCurrentCityDiffered = CityWeatherApi.retrofitService.getCityAsync(filter, APIKEY)
                 try {
-                    val result = getCurrentCityDiffered.await()
                     _networkStatus.value = ConnectionStatus.LOADING
+                    val result = getCurrentCityDiffered.await()
                     if (!containSameElement(result)) {
                         _networkStatus.value = ConnectionStatus.DONE
                         _tmpWeatherCitiesProp.add(result)
