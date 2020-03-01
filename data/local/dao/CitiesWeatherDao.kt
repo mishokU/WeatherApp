@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.weatherapp.data.local.models.CityLocalProperty
 import com.example.weatherapp.data.remote.models.CityProperty
+import kotlinx.coroutines.Deferred
 
 @Dao
 interface CitiesWeatherDao {

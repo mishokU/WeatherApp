@@ -11,6 +11,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentAllCitiesWeatherBinding
+import com.example.weatherapp.domain.utils.ConnectionStatus
 import com.example.weatherapp.domain.viewModelFactories.AllCitiesViewModelFactory
 import com.example.weatherapp.domain.viewmodels.AllCitiesWeatherViewModel
 import com.example.weatherapp.ui.adapters.AllCitiesRecyclerViewAdapter
@@ -77,8 +78,22 @@ class AllCitiesWeatherFragment : Fragment() {
 
     private fun initObservables() {
         viewModel.networkStatus.observe(viewLifecycleOwner, Observer {
-            binding.testText.text = it.toString()
-            //binding.testText.visibility = View.GONE
+            it?.let {
+                when(it){
+                    ConnectionStatus.LOADING -> {
+                        binding.testText.text = it.toString()
+                        binding.testText.visibility = View.VISIBLE
+                    }
+                    ConnectionStatus.ERROR -> {
+                        binding.testText.text = it.toString()
+                        binding.testText.visibility = View.VISIBLE
+                    }
+                    ConnectionStatus.DONE -> {
+                        binding.testText.text = it.toString()
+                        binding.testText.visibility = View.GONE
+                    }
+                }
+            }
         })
 
         viewModel.showFullCityWeather.observe(viewLifecycleOwner, Observer {

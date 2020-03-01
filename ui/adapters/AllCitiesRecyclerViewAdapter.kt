@@ -24,6 +24,7 @@ class AllCitiesRecyclerViewAdapter(private val onClickListener : CityAdapterList
             }
         }
         submitList(it)
+        notifyDataSetChanged()
     }
 
     companion object DiffCallback: DiffUtil.ItemCallback<CityProperty>() {

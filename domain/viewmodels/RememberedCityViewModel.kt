@@ -17,7 +17,8 @@ class RememberedCityViewModel(application: Application) : AndroidViewModel(appli
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     // The ViewModel maintains a reference to the repository to get data.
-    private val repository: AllCitiesWeatherRepo = AllCitiesWeatherRepo(CitiesWeatherDatabase.getDatabase(application, coroutineScope))
+    private val database = CitiesWeatherDatabase.getDatabase(application, coroutineScope)
+    private val repository: AllCitiesWeatherRepo = AllCitiesWeatherRepo(database)
 
     private val _showFullCityWeather = MutableLiveData<CityProperty>()
     val showFullCityWeather: LiveData<CityProperty>
@@ -25,7 +26,7 @@ class RememberedCityViewModel(application: Application) : AndroidViewModel(appli
 
     init {
         coroutineScope.launch {
-            repository.refreshData()
+            //repository.refreshData()
         }
     }
 
