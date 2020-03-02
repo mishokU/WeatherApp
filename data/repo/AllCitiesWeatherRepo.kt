@@ -1,8 +1,11 @@
 package com.example.weatherapp.data.repo
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.Transformations
+import androidx.lifecycle.observe
 import com.example.weatherapp.data.local.database.CitiesWeatherDatabase
 import com.example.weatherapp.data.remote.models.CityProperty
 import com.example.weatherapp.data.remote.retrofitBuilder.API_KEY

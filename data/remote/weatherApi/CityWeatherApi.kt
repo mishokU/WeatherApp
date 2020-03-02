@@ -11,7 +11,6 @@ val moshi = Moshi.Builder()
 
 object CityWeatherApi {
     val retrofitService : OpenWeatherApiService by lazy {
-        retrofit.create(
-            OpenWeatherApiService::class.java)
+        retrofit.create(OpenWeatherApiService::class.java)
     }
 }

@@ -52,9 +52,9 @@ class RememberedCitiesWeatherFragment : Fragment() {
                 if(refresh) {
                    viewModel.refreshAll(it)
                    refresh = false
+                } else {
+                   rememberAdapter.submitList(it)
                 }
-
-                rememberAdapter.submitList(it)
             }
         })
         viewModel.showFullCityWeather.observe(viewLifecycleOwner, Observer {
