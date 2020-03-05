@@ -41,7 +41,7 @@ class AllCitiesWeatherFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentAllCitiesWeatherBinding.inflate(inflater)
-
+        compositeDisposable = CompositeDisposable()
         navigation = Navigation.findNavController(this.activity as AppCompatActivity,R.id.myNavHostFragment)
         (activity as AppCompatActivity).setSupportActionBar(binding.mainToolbar)
 
@@ -119,7 +119,6 @@ class AllCitiesWeatherFragment : Fragment() {
     }
 
     private fun initSearchTextWatcher() {
-        compositeDisposable = CompositeDisposable()
         compositeDisposable.add(
             RxTextView.textChanges(binding.searchText)
                 .skipInitialValue()
@@ -132,5 +131,10 @@ class AllCitiesWeatherFragment : Fragment() {
                 }
                 .subscribe()
         )
+    }
+
+    override fun onDestroyView() {
+        compositeDisposable.dispose()
+        super.onDestroyView()
     }
 }

@@ -33,6 +33,17 @@ class RememberedCityViewModel(application: Application) : AndroidViewModel(appli
         viewModelJob.cancel()
     }
 
+    fun getAllCities(){
+        coroutineScope.launch {
+            val cities = repository.allCities
+            try {
+
+            } catch (t : Throwable){
+
+            }
+        }
+    }
+
     val rememberWeatherProperty = repository.allCities
 
     fun displayCityWithWeather(it: CityProperty?) {
