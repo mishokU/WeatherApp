@@ -20,8 +20,7 @@ A sample app contain one activity which contain tree fragments: SearchingFragmen
 Screenshots
 -----------
 
-<img src="https://sun9-35.userapi.com/c853620/v853620088/2043e2/TXIz561YJaQ.jpg" height="400" width=auto>
-<img src="https://sun9-46.userapi.com/c854428/v854428088/204969/QJ2psGClzBE.jpg" height="400" width=auto>
+<img src="https://sun9-35.userapi.com/c853620/v853620088/2043e2/TXIz561YJaQ.jpg" height="400" width=auto> <img src="https://sun9-46.userapi.com/c854428/v854428088/204969/QJ2psGClzBE.jpg" height="400" width=auto>
 
 Libraries Used
 --------------
